@@ -37,6 +37,11 @@
        name: nginx
        state: present
 
+   - name: Copiar a pagina web que vai ser usada
+     ansible.builtin.copy:
+       src: ./index.html
+       dest: /home/khomp/index.html
+
    - name: Copiar o arquivo nginx.conf para o servidor
      become: true
      ansible.builtin.copy:
