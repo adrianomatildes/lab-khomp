@@ -4,17 +4,23 @@ resource "aws_security_group" "lab" {
   description = "Allow SSH "
 
   ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["189.113.231.217/32"]
+    from_port   = var.ssh-from
+    to_port     = var.ssh-to
+    protocol    = var.protocol
+    cidr_blocks = [var.cidr_blocks]
   }
 
   ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    from_port   = var.http-from
+    to_port     = var.http-to
+    protocol    = var.protocol
+    cidr_blocks = [var.cidr_block_default]
+  }
+    egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = [var.cidr_block_default]
   }
   tags = {
     "infra" = "khomp-sg"

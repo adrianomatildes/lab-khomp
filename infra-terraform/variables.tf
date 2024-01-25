@@ -25,3 +25,33 @@ variable "instance_key" {
   description = "Chave de acesso remoto"
   default = "khomp"
 }
+# SSH
+variable "ssh-from" {
+  default = 22
+}
+variable "ssh-to" {
+  default = 22
+}
+# HTTP
+variable "http-from" {
+  default = 80
+}
+variable "http-to" {
+  default = 80
+}
+variable "protocol" {
+  default = "tcp"
+}
+variable "cidr_blocks" {
+  default = "189.113.231.217/32"
+}
+variable "cidr_block_default" {
+  default = "0.0.0.0/0"
+}
+# Subnet
+variable "az" {
+  default = "us-east-1b"
+}
+variable "cidr_block_sub" {
+  default = "10.0.1.0/24"
+}

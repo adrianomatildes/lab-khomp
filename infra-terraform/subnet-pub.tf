@@ -3,7 +3,7 @@ resource "aws_subnet" "khomp-pub" {
     "Name" = "khomp-pub"
   }
   vpc_id                  = aws_vpc.vpc-khomp.id
-  availability_zone       = "us-east-1b"
-  cidr_block              = "10.0.1.0/24"
+  availability_zone       = var.az
+  cidr_block              = var.cidr_block_sub
   map_public_ip_on_launch = "true"
 }

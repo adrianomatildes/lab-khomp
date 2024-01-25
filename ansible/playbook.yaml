@@ -1,0 +1,50 @@
+---
+- name: Criando usuário com permissão de sudo e com acesso a EC2 através da chave ssh
+  hosts: web
+  remote_user: ubuntu
+  become: true
+
+  tasks:
+    - name: Crie um usuário "khomp"
+      ansible.builtin.user:
+        name: khomp
+        shell: /bin/bash
+        groups: sudo
+        append: yes
+        password: "$6$92UX3QRZRoQTMqGg$TZeMi4WSAT1dYOCGtc3mlSSM/bZzA8jkPqbldPQLGaLULSKxQZ5p4y/06n8pz1hDqoiSZVNNxeTK4DyegejzZ1"
+
+    - name: Criar diretório .ssh
+      ansible.builtin.file:
+        path: /home/khomp/.ssh
+        owner: khomp
+        group: khomp
+        state: directory
+
+    - name: Adicionando a chave pública em authorized_keys
+      ansible.builtin.copy:
+        src: /home/kubeadriano/.ssh/kubeadriano.pub
+        dest: /home/khomp/.ssh/authorized_keys
+
+
+- name: Instalação do nginx e configuração de uma pagina estatica
+  hosts: web
+  remote_user: khomp
+  become: true
+  tasks:
+   - name: Instalar o nginx
+     become: true
+     ansible.builtin.apt:
+       name: nginx
+       state: present
+
+   - name: Copiar o arquivo nginx.conf para o servidor
+     become: true
+     ansible.builtin.copy:
+       src: ./nginx.conf
+       dest: /etc/nginx/nginx.conf
+
+   - name: Reiniciar o servico do nginx
+     become: true
+     ansible.builtin.service:
+       name: nginx
+       state: restarted
