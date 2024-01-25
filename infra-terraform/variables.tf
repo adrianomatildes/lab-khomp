@@ -56,9 +56,6 @@ variable "https-from" {
 variable "https-to" {
   default = 443
 }
-variable "protocol" {
-  default = "tcp"
-}
 # Subnet
 variable "az" {
   default = "us-east-1b"
