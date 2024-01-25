@@ -20,7 +20,7 @@ resource "aws_security_group" "lab" {
     from_port = var.https-from
     to_port = var.https-to
     protocol = var.protocol
-    cidr_blocks = var.cidr_block_default
+    cidr_blocks = [var.cidr_block_default]
   }
     egress {
     from_port   = 0
