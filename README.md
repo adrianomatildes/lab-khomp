@@ -27,4 +27,6 @@ Foi criado um playbook do Ansible que:
 
 ### Redes
 As duas máquinas conseguem se comunicar através de uma conexão de rede, possivelmente através de um switch ou roteador, que permite a troca de dados entre elas baseado em endereços IP e portas de comunicação.
-![Diagrama de Rede](https://raw.githubusercontent.com/adrianomatildes/lab-khomp/master/img/redes.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/adrianomatildes/lab-khomp/master/img/redes.png" alt="Diagrama de Rede">
+</p>
