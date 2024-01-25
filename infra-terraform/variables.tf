@@ -48,6 +48,17 @@ variable "cidr_blocks" {
 variable "cidr_block_default" {
   default = "0.0.0.0/0"
 }
+
+# HTTPS
+variable "https-from" {
+  default = 443
+}
+variable "https-to" {
+  default = 443
+}
+variable "protocol" {
+  default = "tcp"
+}
 # Subnet
 variable "az" {
   default = "us-east-1b"
