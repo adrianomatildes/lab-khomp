@@ -9,6 +9,4 @@ O código automatiza o processo de configuração de um servidor web NGINX para 
 ### Notas Importantes:
 
 - Comando para iniciar as configurações do usuario e webserver
-`` `ansible-playbook -i hosts playbook.yaml --ask-become-pass` ``
-
-- A senha é 123456
+`` `ansible-playbook -i hosts playbook.yaml` ``

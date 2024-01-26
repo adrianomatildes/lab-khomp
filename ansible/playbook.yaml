@@ -2,54 +2,60 @@
 - name: Criando usuário com permissão de sudo e com acesso a EC2 através da chave ssh
   hosts: web
   remote_user: ubuntu
+  vars_files:
+    - vars.yaml
   become: true
 
   tasks:
-    - name: Crie um usuário "khomp"
+    - name:  Instalação do pacote whois
+      ansible.builtin.apt:
+        name: whois
+        state: present
+        update_cache: true
+
+    - name: Gerar senha criptografada
+      ansible.builtin.shell: "mkpasswd --method=sha-512 {{ senha }}"
+      register: cripto_pwd
+
+    - name: Crie um usuário "{{ usuario }}"
       ansible.builtin.user:
-        name: khomp
+        name: "{{ usuario }}"
         shell: /bin/bash
         groups: sudo
         append: yes
-        password: "$6$92UX3QRZRoQTMqGg$TZeMi4WSAT1dYOCGtc3mlSSM/bZzA8jkPqbldPQLGaLULSKxQZ5p4y/06n8pz1hDqoiSZVNNxeTK4DyegejzZ1"
+        password: "{{ cripto_pwd.stdout }}"
 
     - name: Criar diretório .ssh
       ansible.builtin.file:
-        path: /home/khomp/.ssh
-        owner: khomp
-        group: khomp
+        path: "/home/{{ usuario }}/.ssh"
+        owner: "{{ usuario }}"
+        group: "{{ usuario }}"
         state: directory
 
     - name: Adicionando a chave pública em authorized_keys
       ansible.builtin.copy:
         src: /home/kubeadriano/.ssh/kubeadriano.pub
-        dest: /home/khomp/.ssh/authorized_keys
+        dest: "/home/{{ usuario }}/.ssh/authorized_keys"
 
+    - name: Instalar o nginx
+      become: true
+      ansible.builtin.apt:
+        name: nginx
+        state: present
 
-- name: Instalação do nginx e configuração de uma pagina estatica
-  hosts: web
-  remote_user: khomp
-  become: true
-  tasks:
-   - name: Instalar o nginx
-     become: true
-     ansible.builtin.apt:
-       name: nginx
-       state: present
+    - name: Copiar a pagina web que vai ser usada
+      ansible.builtin.copy:
+        src: ./index.html
+        dest: "/home/{{ usuario }}/index.html"
 
-   - name: Copiar a pagina web que vai ser usada
-     ansible.builtin.copy:
-       src: ./index.html
-       dest: /home/khomp/index.html
+    - name: Copiar o arquivo nginx.conf para o servidor
+      become: true
+      ansible.builtin.copy:
+        src: ./nginx.conf
+        dest: /etc/nginx/nginx.conf
 
-   - name: Copiar o arquivo nginx.conf para o servidor
-     become: true
-     ansible.builtin.copy:
-       src: ./nginx.conf
-       dest: /etc/nginx/nginx.conf
-
-   - name: Reiniciar o servico do nginx
-     become: true
-     ansible.builtin.service:
-       name: nginx
-       state: restarted
+    - name: Reiniciar o servico do nginx
+      become: true
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
