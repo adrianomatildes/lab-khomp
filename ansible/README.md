@@ -5,3 +5,10 @@ O código automatiza o processo de configuração de um servidor web NGINX para 
 <p align="center">
   <img src="https://raw.githubusercontent.com/adrianomatildes/lab-khomp/master/img/redes.png" alt="Diagrama de Rede">
 </p>
+
+### Notas Importantes:
+
+- Comando para iniciar as configurações do usuario e webserver
+`` `ansible-playbook -i hosts playbook.yaml --ask-become-pass` ``
+
+- A senha é 123456

@@ -23,7 +23,7 @@ variable "instance_ami" {
 }
 variable "instance_key" {
   description = "Chave de acesso remoto"
-  default = "khomp"
+  default     = "khomp"
 }
 # SSH
 variable "ssh-from" {

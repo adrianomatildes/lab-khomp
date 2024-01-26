@@ -33,13 +33,17 @@ Para evitar erros no arquivo `backend.tf`, é necessário criar o bucket S3 manu
    Certifique-se de criar o arquivo `backend.tf` com as configurações desejadas para o backend, como tipo de armazenamento remoto, região, etc.
 
 5. **Criação Manual do Bucket S3:**
-   Antes de aplicar a configuração do backend, é essencial criar o bucket S3 associado. Isso pode ser feito manualmente, utilizando a interface do usuário da AWS ou ferramentas de linha de comando como o AWS CLI.
+   Este script automatiza a criação de um bucket S3 na região us-east-1 da AWS utilizando Python e Terraform. Após a criação do bucket, espera-se 15 segundos para garantir sua disponibilidade antes de inicializar o Terraform. Em seguida, o Terraform é inicializado, o código é formatado, a configuração é validada e um plano de execução é gerado. Isso simplifica o processo de provisionamento de infraestrutura na AWS, garantindo consistência e gerenciabilidade.
+   `` `python3 create_bucket.py` ``
+
 
 
 ### Notas Importantes:
 
 - Certifique-se de que as credenciais da AWS estejam configuradas localmente.
 - Personalize as variáveis no arquivo Terraform conforme sua preferência e necessidade.
+- Executar o script python para criar o S3, após executar o terraform apply para criar a infraestrutura
+- Copiar o endereço da EC2 na saida do logs do terraform e colar no host da pasta Ansible
 - Ao finalizar o laboratório, utilize o Terraform para destruir os recursos e evitar custos desnecessários.
 
 Este projeto fornece uma infraestrutura flexível e escalável para apoiar seus estudos práticos em um ambiente controlado e eficiente na nuvem AWS.

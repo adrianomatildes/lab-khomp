@@ -17,12 +17,12 @@ resource "aws_security_group" "lab" {
     cidr_blocks = [var.cidr_block_default]
   }
   ingress {
-    from_port = var.https-from
-    to_port = var.https-to
-    protocol = var.protocol
+    from_port   = var.https-from
+    to_port     = var.https-to
+    protocol    = var.protocol
     cidr_blocks = [var.cidr_block_default]
   }
-    egress {
+  egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
