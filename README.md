@@ -3,7 +3,7 @@
 Este repositório contém questões de prova prática da seleção para o cargo de Analista de SRE. A prova consiste em demonstrar conhecimentos em diversas áreas, como Cloud, Kubernetes, Linux/Ansible e Redes.
 
 ### Cloud / Terraform
-Utilizando Terraform, foi declarada uma infraestrutura na nuvem, incluindo:
+Utilizando Terraform, declare uma infraestrutura na nuvem, utilizando a cloud de sua preferência, que inclua:
 - Uma instância (VM) rodando Ubuntu 18.04
 - Uma VPC/Vnet com pelo menos uma subnet
 - Um security group com uma regra para acesso SSH a partir de um IP específico
@@ -15,7 +15,6 @@ Utilizando Terraform, foi declarada uma infraestrutura na nuvem, incluindo:
 - Supondo que você tenha dois Nodes no cluster, como garantiria que ao menos um desses Pods estaria rodando em cada um dos Nodes.
 
 ### Linux / Ansible
-Foi criado um playbook do Ansible que:
 - Cria um usuário "khomp" com senha aleatória e o adiciona ao grupo "sudo".
 - Configura o SSH para permitir apenas acesso por chave pública para o usuário "khomp".
 - Instancia um webserver de preferência e configura para rodar na inicialização do S.O.
