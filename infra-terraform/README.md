@@ -42,7 +42,8 @@ Para evitar erros no arquivo `backend.tf`, é necessário criar o bucket S3 manu
 
 - Certifique-se de que as credenciais da AWS estejam configuradas localmente.
 - Personalize as variáveis no arquivo Terraform conforme sua preferência e necessidade.
-- Executar o script python para criar o S3, após executar o terraform apply para criar a infraestrutura
+- Executar o script python `` `python3 create_bucket.py` `` para criar o S3
+- Executar o terraform apply para criar a infraestrutura
 - Copiar o endereço da EC2 na saida do logs do terraform e colar no host da pasta Ansible
 - Ao finalizar o laboratório, utilize o Terraform para destruir os recursos e evitar custos desnecessários.
 

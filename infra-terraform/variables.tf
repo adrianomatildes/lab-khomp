@@ -43,7 +43,7 @@ variable "protocol" {
   default = "tcp"
 }
 variable "cidr_blocks" {
-  default = "189.113.231.217/32"
+  default = "189.113.230.244/32"
 }
 variable "cidr_block_default" {
   default = "0.0.0.0/0"
