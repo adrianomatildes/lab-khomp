@@ -1,6 +1,6 @@
 ## Resumo da Prova Prática
 
-Este repositório contém as respostas para a prova prática da seleção para o cargo de Analista de SRE na Khomp. A prova consiste em demonstrar conhecimentos em diversas áreas, como Cloud, Kubernetes, Linux/Ansible e Redes.
+Este repositório contém questões de prova prática da seleção para o cargo de Analista de SRE. A prova consiste em demonstrar conhecimentos em diversas áreas, como Cloud, Kubernetes, Linux/Ansible e Redes.
 
 ### Cloud / Terraform
 Utilizando Terraform, foi declarada uma infraestrutura na nuvem, incluindo:
@@ -9,13 +9,10 @@ Utilizando Terraform, foi declarada uma infraestrutura na nuvem, incluindo:
 - Um security group com uma regra para acesso SSH a partir de um IP específico
 - Um bucket/storage para armazenamento de arquivos
 
-Para criar redundância neste ambiente, seria necessário implementar técnicas de failover, como balanceamento de carga e replicação de instâncias.
-
 ### Kubernetes
-Foram declarados três pods com imagem nginx, cada um limitado a 512Mi de recursos, e um service expondo a porta 80 dos pods. 
-- Para garantir que ao menos um pod estaria rodando em cada nó, seria necessário utilizar o conceito de PodAntiAffinity.
-- Para monitorar o uso de recursos e a disponibilidade do cluster Kubernetes, seriam utilizadas ferramentas como Prometheus e Grafana.
-- Um problema de falta de memória em um pod no cluster seria identificado através de métricas de uso de recursos e poderia ser corrigido aumentando a alocação de memória ou otimizando a aplicação.
+- Declare um manifesto que contenha 3 pods com uma imagem nginx limitando o uso de recursos de cada um dos pods em 512Mi.
+- Crie um service que exponha a porta 80 dos pods
+- Supondo que você tenha dois Nodes no cluster, como garantiria que ao menos um desses Pods estaria rodando em cada um dos Nodes.
 
 ### Linux / Ansible
 Foi criado um playbook do Ansible que:
@@ -26,7 +23,7 @@ Foi criado um playbook do Ansible que:
 - Realiza ajustes necessários para o funcionamento correto do webserver.
 
 ### Redes
-As duas máquinas conseguem se comunicar através de uma conexão de rede, possivelmente através de um switch ou roteador, que permite a troca de dados entre elas baseado em endereços IP e portas de comunicação.
+Tendo o diagrama abaixo como base, explique com suas palavras como as duas máquinas conseguem se comunicar
 <p align="center">
   <img src="https://raw.githubusercontent.com/adrianomatildes/lab-khomp/master/img/redes.png" alt="Diagrama de Rede">
 </p>
