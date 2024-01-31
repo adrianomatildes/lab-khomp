@@ -1,4 +1,4 @@
-user {{ usuario }} {{ usuario}};
+user {{ usuario }} {{ usuario }};
 events
 {
     worker_connections 1024;
@@ -7,7 +7,7 @@ http
 {
     server
     {
-        root /home/{{ usuario}}/;
+        root /home/{{ usuario }}/;
         location /
         {
             index index.html;
